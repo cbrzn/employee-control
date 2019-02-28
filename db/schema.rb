@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_02_23_195039) do
 
   create_table "reports", force: :cascade do |t|
     t.datetime "start"
-    t.datetime "end"
+    t.datetime "finish"
     t.integer "user_id"
   end
 

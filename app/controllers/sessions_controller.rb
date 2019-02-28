@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
                 jwt = JwtService.encode(payload: { "email" => user.email, "role" => role })  
                 render json: { jwt: jwt, status: 200 }
             else 
-                render json: { status: 404, msg: 'Wrong password' }
+                render json: { status: 403, msg: 'Wrong password' }
             end
         else
             render json: { status: 404, msg: 'Email not registered' }

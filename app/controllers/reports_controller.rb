@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
         if report.save
             render json: { status: 201 }
         else
-            render json: { status: 403 }
+            render json: { status: 500 }
         end
     rescue ::ActiveRecord::RecordNotFound
         render json: { status: 404, message: "User does not exist" }
@@ -16,17 +16,18 @@ class ReportsController < ApplicationController
      
     def index
         user_id = User.find_by(email: @user["email"]).id
-        report = (@user["role"] == "Employee") ? Report.where(user_id: user_id) : Report.all
-        render json: { status: 200, report: report }
+        reports = (@user["role"] == "Employee") ? Report.where(user_id: user_id) : Report.all
+        render json: { status: 200, reports: reports }
     end
 
     def update
-        report = Report.update_attributes(report_params)
+        report = Report.find(params[:id]) 
+        report.update_attributes(report_params)
         if report.save
             render json: { status: 200 }
         end
-        rescue
-            render json: { status: 500 }
+    rescue 
+        render json: { status: 500 }
     end
 
     def destroy
@@ -41,7 +42,7 @@ class ReportsController < ApplicationController
     private
 
         def report_params
-            params.require(:report).permit(:start, :end)
+            params.require(:report).permit(:user_id, :start, :finish)
         end
 
 end

@@ -15,10 +15,10 @@ gem 'puma', '~> 3.11'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+# Handling authentication with Json Web Token
 gem 'jwt'
+# Saving environment variable
 gem 'figaro'
-gem 'rack-cors'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
@@ -28,11 +28,13 @@ gem 'rack-cors'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "rspec-rails", "~> 3.5"
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
