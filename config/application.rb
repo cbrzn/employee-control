@@ -36,10 +36,10 @@ module RailsRestful
       allow do
         origins '*'
         resource '*',
-          headers: %w(Authorization),
-          methods: :any,
-          expose: %w(Authorization),
-          max_age: 600
+        headers: :any,
+        methods: :any,
+        expose: :any,
+        max_age: 99999999
       end
     end
   end

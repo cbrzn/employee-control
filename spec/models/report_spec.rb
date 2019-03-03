@@ -19,6 +19,16 @@ RSpec.describe Report, type: :model do
         expect(unvalid_report).to_not be_valid
     end
 
+    it "is unvalid because start time its later than finish" do
+        unvalid_report = build(:report, start: "19:00")
+        expect(unvalid_report).to_not be_valid
+    end
+
+    it "is unvalid because it does not have start time" do
+        unvalid_report = build(:report, start: "")
+        expect(unvalid_report).to_not be_valid
+    end
+
     after(:all) do
         DatabaseCleaner.clean_with(:truncation)
     end
